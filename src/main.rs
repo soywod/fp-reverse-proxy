@@ -58,7 +58,7 @@ async fn main() {
                 .expect("should parse CORS origin"),
         )
         .allow_origin(
-            "https://ripee.fr"
+            "https://app.ripee.fr"
                 .parse::<HeaderValue>()
                 .expect("should parse CORS origin"),
         )
