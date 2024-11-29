@@ -11,7 +11,7 @@ use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use tokio::net::TcpListener;
-use tower_http::cors::CorsLayer;
+use tower_http::cors::{AllowHeaders, CorsLayer};
 use tracing::debug;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 
@@ -62,7 +62,8 @@ async fn main() {
                 .parse::<HeaderValue>()
                 .expect("should parse CORS origin"),
         )
-        .allow_methods([Method::GET]);
+        .allow_headers(AllowHeaders::any())
+        .allow_methods([Method::GET, Method::POST]);
 
     let app = Router::new()
         .route("/drivers", get(list_drivers))
