@@ -52,16 +52,9 @@ async fn main() {
     };
 
     let cors = CorsLayer::new()
-        .allow_origin(
-            "http://localhost:3000"
-                .parse::<HeaderValue>()
-                .expect("should parse CORS origin"),
-        )
-        .allow_origin(
-            "https://app.ripee.fr"
-                .parse::<HeaderValue>()
-                .expect("should parse CORS origin"),
-        )
+        .allow_origin(HeaderValue::from_static("http://localhost:3000"))
+        .allow_origin(HeaderValue::from_static("https://app.ripee.fr"))
+        .allow_origin(HeaderValue::from_static("https://bolt.new"))
         .allow_headers(AllowHeaders::any())
         .allow_methods([Method::GET, Method::POST]);
 
